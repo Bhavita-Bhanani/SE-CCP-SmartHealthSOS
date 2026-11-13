@@ -3,8 +3,8 @@
 **Project Title:** Smart Health & Emergency SOS Response Portal
 **Course:** Software Engineering – CT-365
 **Submission:** Deliverable 1
-**Date:** [Insert Date]
-**Team:** [Insert Group Number]
+**Date:** November 14, 2026
+**Group Members:** 
 
 ---
 
