@@ -10,7 +10,7 @@
 
 ## 1. Repository Link
 
-**Git Repository:** [Insert Repository URL]
+**Git Repository:** https://github.com/Bhavita-Bhanani/SE-CCP-SmartHealthSOS
 **Branch Strategy:** `main` (stable), `dev` (active development), feature branches per sprint
 
 ---
@@ -107,12 +107,12 @@
 
 | Task                                        | Assigned To  | Status    |
 |---------------------------------------------|--------------|-----------|
-| Execute all 30 test cases                   | [Member 4]   | [In Progress] |
-| Log and fix defects                         | All          | [In Progress] |
-| Retest fixed defects                        | [Member 4]   | [In Progress] |
+| Execute all 30 test cases                   | [Member 4]   | ✅ Done  |
+| Log and fix defects                         | All          | ✅ Done  |
+| Retest fixed defects                        | [Member 4]   | ✅ Done  |
 | Complete D1–D6 documentation                | [Member 4]   | ✅ Done   |
-| Seed data script (seed.js)                  | [Member 3]   | [In Progress] |
-| Prepare final presentation slides           | All          | [In Progress] |
+| Seed data script (seed.js)                  | [Member 3]   | ✅ Done  |
+| Prepare final presentation slides           | All          | ✅ Done  |
 
 ---
 
@@ -121,7 +121,7 @@
 Track tasks using GitHub Issues or a Kanban board. Columns:
 - **Backlog** → **In Progress** → **Review** → **Done**
 
-GitHub Issues link: [Insert Issues URL]
+GitHub Issues link: https://github.com/Bhavita-Bhanani/SE-CCP-SmartHealthSOS/issues
 
 ---
 
