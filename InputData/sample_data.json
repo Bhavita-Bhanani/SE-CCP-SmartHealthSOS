@@ -1,0 +1,50 @@
+{
+  "users": [
+    {
+      "name": "Ali Hassan (Patient)",
+      "email": "patient@test.com",
+      "password": "Test@1234",
+      "phone": "03001111111",
+      "role": "patient"
+    },
+    {
+      "name": "Dr. Sara Khan (Responder)",
+      "email": "responder@test.com",
+      "password": "Test@1234",
+      "phone": "03002222222",
+      "role": "responder"
+    },
+    {
+      "name": "Admin User",
+      "email": "admin@test.com",
+      "password": "Test@1234",
+      "phone": "03003333333",
+      "role": "admin"
+    }
+  ],
+  "sampleHealthProfile": {
+    "bloodType": "B+",
+    "allergies": ["Penicillin", "Peanuts"],
+    "chronicConditions": ["Diabetes Type 2"],
+    "medications": ["Metformin 500mg"],
+    "emergencyContacts": [
+      {
+        "name": "Ahmed Hassan",
+        "phone": "03004444444",
+        "relationship": "Brother"
+      }
+    ]
+  },
+  "sampleLocations": [
+    {
+      "label": "Karachi City Center",
+      "latitude": 24.8607,
+      "longitude": 67.0011
+    },
+    {
+      "label": "NED University / TIEST Campus",
+      "latitude": 24.9339,
+      "longitude": 67.1116
+    }
+  ]
+}
