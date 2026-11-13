@@ -15,10 +15,10 @@
 
 | Name               | Roll Number     | Role                        |
 |--------------------|-----------------|-----------------------------|
-| [Member 1]         | [Roll No.]      | Team Coordinator / Backend  |
-| [Member 2]         | [Roll No.]      | Frontend Developer          |
-| [Member 3]         | [Roll No.]      | Database / API Integration  |
-| [Member 4]         | [Roll No.]      | Testing & Documentation     |
+| [Bhavita]         | [TCT-24007]      | Team Coordinator / Backend  |
+| [Ayesha]         | [TCT-24009]      | Frontend Developer          |
+| [Narjis Fatima]         | [TCT-24003]      | Database / API Integration  |
+| [Hiba Shafique]         | [TCT-24013]      | Testing & Documentation     |
 
 ---
 
