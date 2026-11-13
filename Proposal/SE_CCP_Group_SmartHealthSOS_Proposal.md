@@ -1,15 +1,20 @@
 # D1 – Project Proposal and Feasibility Study
 
-**Project Title:** Smart Health & Emergency SOS Response Portal
-**Course:** Software Engineering – CT-365
-**Submission:** Deliverable 1
-**Date:** November 14, 2026
-**Group Members:** 
+| Field | Details |
+| :--- | :--- |
+| **Project Title** | Smart Health & Emergency SOS Response Portal |
+| **Course** | Software Engineering – CT-365 |
+| **Submission** | Deliverable 1 |
+| **Date** | November 14, 2026 |
 
----
+### Group Members
 
-## 1. Project Title
-Smart Health & Emergency SOS Response Portal
+| # | Full Name | Roll Number | Role |
+| :---: | :--- | :--- | :--- |
+| 1 | Bhavita Bhanani | `CT-23XXX` | Group Lead & Full-Stack Developer |
+| 2 | Narjis Fatima Soomro | `CT-23XXX` | Backend & Database Architect |
+| 3 | Member 3 Name | `CT-23XXX` | Frontend & UI/UX Developer |
+| 4 | Member 4 Name | `CT-23XXX` | QA & Documentation Lead |
 
 ---
 
