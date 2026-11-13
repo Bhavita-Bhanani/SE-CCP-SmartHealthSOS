@@ -5,7 +5,7 @@
 | **Project Title** | Smart Health & Emergency SOS Response Portal |
 | **Course** | Software Engineering – CT-365 |
 | **Submission** | Deliverable 1 |
-| **Date** | September 28, 2026|
+| **Date** |October 31, 2026|
 
 ### Group Members
 
