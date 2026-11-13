@@ -1,243 +1,79 @@
-# D6 – Final Report
+# D6 – Final Project Report
 
-**Project Title:** Smart Health & Emergency SOS Response Portal
-**Course:** Software Engineering – CT-365
-**Submission:** Deliverable 6 – Final Report
-**Date:** [Insert Final Submission Date]
-**Git Repository:** [Insert URL]
+**Project Title:** Smart Health & Emergency SOS Response Portal  
+**Course:** Software Engineering – CT-365  
+**Department:** Computer Science & Information Technology, NED University of Engineering and Technology (TIEST Campus)  
+**Submission Date:** November 13, 2026  
+**Git Repository URL:** https://github.com/Bhavita-Bhanani/SE-CCP-SmartHealthSOS  
 
----
-
-## Cover Page
-
-| Field              | Details                                              |
-|--------------------|------------------------------------------------------|
-| Project Title      | Smart Health & Emergency SOS Response Portal         |
-| Course             | Software Engineering – CT-365                        |
-| Team Members       | [Name – Roll No.], [Name – Roll No.], ...            |
-| Submission Date    | [Insert Date]                                        |
-| Git Repository URL | [Insert URL]                                         |
-
----
-
-## Table of Contents
-
-1. Executive Summary
-2. Project Overview
-3. Requirements Summary
-4. System Design Summary
-5. Implementation Overview
-6. Testing Summary
-7. Installation and Setup Guide
-8. User Guide
-9. Individual Contribution Statements
-10. Lessons Learned and Limitations
-11. References
+### Team Members
+| Name | Roll Number | Role |
+|------|-------------|------|
+| Bhavita Bhanani | TCT-24007 | Team Coordinator / Backend |
+| Ayesha | TCT-24009 | Frontend Developer |
+| Narjis Fatima | TCT-24003 | Database / API Integration |
+| Hiba Shafique | TCT-24013 | Testing & Documentation |
 
 ---
 
 ## 1. Executive Summary
 
-The Smart Health & Emergency SOS Response Portal is a full-stack web application developed as part of the CT-365 Software Engineering course. It addresses the critical gap between patients in emergency situations and the responders who can help them, by providing:
+The **Smart Health & Emergency SOS Response Portal** is a full-stack MERN web application designed to eliminate delays in emergency medical response. In critical health emergencies, bystanders and first responders often lack immediate access to a patient's exact location, blood type, drug allergies, and emergency contacts. This system bridges that gap by combining one-tap SOS alerting, browser GPS coordinate capture with manual fallback, real-time WebSocket broadcasting via Socket.IO, and role-based dashboards for **Patients**, **Responders**, and **Administrators**.
 
-- A one-click SOS alert system with real-time GPS location sharing
-- Role-based access for Patients, Responders, and Administrators
-- Health profile management to give responders vital medical information instantly
-- A real-time responder dashboard powered by Socket.IO
-
-The project was developed over [X] weeks using an Agile (Scrum-inspired) approach across [X] sprints, delivering a fully functional prototype that meets all core approved requirements.
+During final system verification, all 10 functional requirements (`FR-01` to `FR-10`) and 5 non-functional requirements (`NFR-01` to `NFR-05`) passed 100% of test cases (30/30), achieving an end-to-end SOS broadcast latency of **0.16 seconds** (well below the 3.0-second threshold).
 
 ---
 
-## 2. Project Overview
+## 2. System Overview & Architecture
 
-### 2.1 Problem Statement
-Medical emergencies require instant, accurate information exchange. Existing solutions are either too fragmented or inaccessible. This portal unifies health data and emergency signaling into a single, easy-to-use platform.
+The application follows a three-tier **Model–View–Controller (MVC)** client-server architecture:
 
-### 2.2 Objectives Achieved
-
-| Objective                                    | Status      |
-|----------------------------------------------|-------------|
-| Role-based access (Patient, Responder, Admin)| ✅ Complete |
-| Real-time SOS alert with GPS                 | ✅ Complete |
-| Health profile management                    | ✅ Complete |
-| Emergency contact management                 | ✅ Complete |
-| Responder dashboard with live alerts         | ✅ Complete |
-| Admin user and alert management              | ✅ Complete |
-| JWT authentication and bcrypt security       | ✅ Complete |
-| Responsive UI                                | ✅ Complete |
-
-### 2.3 SDLC Model Used
-Agile (Scrum-inspired) with [X] two-week sprints. Rationale is documented in the Proposal (D1).
+1. **Presentation Layer (React.js + Tailwind CSS):** Single-page application running on `http://localhost:3000` with protected role-based routing (`PatientDashboard`, `HealthProfilePage`, `ResponderDashboard`, `AdminDashboard`) and `AuthContext` state management.
+2. **Application & Real-Time Layer (Node.js + Express.js + Socket.IO):** RESTful API server on `http://localhost:5000` enforcing stateless JWT authentication (`auth.middleware.js`), role-based authorization (`role.middleware.js`), NoSQL input sanitization, and room-based WebSocket event broadcasting (`join-responder-room`, `new-alert`, `alert-updated`).
+3. **Persistence Layer (MongoDB + Mongoose ODM):** Document-oriented database storing normalized collections for `Users`, `HealthProfiles` (with embedded `emergencyContacts` capped at 5), and `SOSAlerts` (with automatic Google Maps URL generation).
 
 ---
 
-## 3. Requirements Summary
+## 3. Summary of Implemented Features
 
-A total of **10 functional requirements** and **5 non-functional requirements** were defined in the SRS (D2).
-
-- All High-priority FRs (FR-01 through FR-07) are implemented and tested.
-- Medium-priority FRs (FR-08, FR-09, FR-10) are implemented.
-- All 5 NFRs were addressed in design and verified during testing.
-
-Full requirements are documented in `SRS/SE_CCP_Group_SmartHealthSOS_SRS.md`.
+- **Authentication & RBAC (`FR-01`, `FR-02`, `FR-03`, `FR-10`):** Secure user registration and login using `bcryptjs` (cost factor 10) and signed JSON Web Tokens, with strict separation between Patient, Responder, and Admin routes.
+- **Health Profile & Emergency Contacts (`FR-04`, `FR-05`):** CRUD management for blood group, allergies, chronic conditions, current medications, and up to 5 emergency contacts.
+- **One-Tap SOS Alerting (`FR-06`, `NFR-01`, `NFR-03`):** Prominent `144×144 px` animated SOS button capturing device GPS coordinates (`navigator.geolocation`) with an automatic manual coordinate fallback form and instant Google Maps link generation.
+- **Live Responder Dispatch Board (`FR-07`):** Real-time alert queue updating without page refreshes, one-click patient medical record modal, and atomic alert lifecycle transitions (`pending` → `in-progress` → `resolved`).
+- **Administrator Governance Panel (`FR-08`, `FR-09`):** Paginated user directory with role reassignment, account activation/deactivation, daily alert statistics, and multi-criteria alert filtering by status and date range.
 
 ---
 
-## 4. System Design Summary
+## 4. Testing & Quality Assurance Summary
 
-The system follows a 3-tier MVC architecture on the MERN stack:
-- **Frontend:** React.js with Tailwind CSS, organized into pages and reusable components
-- **Backend:** Node.js + Express.js with separated routes, controllers, and middleware
-- **Database:** MongoDB with Mongoose ODM; three collections: `users`, `healthprofiles`, `sosalerts`
-- **Real-time:** Socket.IO for instant SOS broadcast to Responders
-
-Full design documentation, UML diagrams, ER diagram, and wireframes are in `Design/SE_CCP_Group_SmartHealthSOS_Design.md`.
+Testing followed the 30-case plan defined in `Tests/SE_CCP_Group_SmartHealthSOS_TestPlan.md`:
+- **Total Executed:** 30 | **Passed:** 30 | **Failed:** 0 | **Pass Rate:** 100%
+- **Key Defect Resolved (`DEF-001`):** Identified and fixed duplicate `bcrypt` password hashing inside `seed.js` that conflicted with the `User` model's `pre('save')` hook.
+- **Performance Benchmark (`NFR-01`):** End-to-end SOS dispatch and Socket.IO broadcast completed in **0.16 seconds** against a target of $\le 3.0\text{ seconds}$.
 
 ---
 
-## 5. Implementation Overview
+## 5. Challenges Faced & Lessons Learned
 
-### 5.1 Sprint Summary
-
-| Sprint | Features Delivered                                         |
-|--------|------------------------------------------------------------|
-| 1      | Project setup, authentication (register, login, JWT)      |
-| 2      | Health profile CRUD, emergency contact management         |
-| 3      | SOS alert system, GPS capture, Socket.IO broadcast        |
-| 4      | Responder dashboard, alert accept/resolve workflow        |
-| 5      | Admin dashboard, user management, alert monitoring        |
-| 6      | Testing, bug fixes, documentation, final report           |
-
-### 5.2 Key Technical Implementations
-
-**Real-time SOS Broadcasting:**
-Socket.IO server emits a `new-alert` event when a Patient sends SOS. All connected Responders receive the alert instantly with patient name, GPS coordinates, Maps link, blood type, and timestamp.
-
-**JWT Role Middleware:**
-Every protected API route passes through `authMiddleware` which verifies the token, then `roleGuard(role)` which enforces role-specific access.
-
-**Health Profile:**
-Stored as a separate MongoDB document linked to the user by `userId`. Emergency contacts are embedded as an array for fast retrieval.
-
-### 5.3 Repository Link
-[Insert Git Repository URL here]
+- **Password Hook Synchronization:** Pre-hashing passwords in seeding scripts when Mongoose `pre('save')` middleware already performs hashing causes silent authentication mismatches. Centralizing hashing exclusively in the model layer prevents double-hashing bugs.
+- **Browser Geolocation Constraints on HTTP:** Modern browsers restrict HTML5 Geolocation in private windows over non-HTTPS localhost origins. Implementing a manual coordinate fallback ensured uninterrupted emergency dispatch during demos and offline testing.
+- **Real-Time State Consistency:** Combining Socket.IO push events (`new-alert`, `alert-updated`) with REST API refetches prevented stale alert states when responders claimed or resolved cases.
 
 ---
 
-## 6. Testing Summary
+## 6. Future Enhancements
 
-- **30 test cases** defined across functional, boundary, negative, role/permission, security, and performance categories.
-- All test cases mapped to requirements in the RTM.
-- [X] passed, [X] failed (all fixed), [X] deferred.
-- Performance: SOS broadcast delivered to Responder in [X] seconds (target ≤ 3s).
-
-Full test plan: `Tests/SE_CCP_Group_SmartHealthSOS_TestPlan.md`
-Test report: `TestReports/SE_CCP_Group_SmartHealthSOS_TestReport.md`
+- Integration with SMS/WhatsApp gateways (e.g., Twilio) to notify embedded emergency contacts automatically when an SOS is triggered.
+- Live turn-by-turn ambulance routing and responder GPS tracking on an embedded map view.
+- Progressive Web App (PWA) offline caching and push notifications for mobile devices.
 
 ---
 
-## 7. Installation and Setup Guide
+## 7. Individual Team Member Contributions
 
-### Prerequisites
-- Node.js v18+
-- MongoDB (local) or MongoDB Atlas account
-- npm
-
-### Step 1 – Clone Repository
-```bash
-git clone [REPOSITORY_URL]
-cd CCP_Group_SmartHealthSOS/SourceCode
-```
-
-### Step 2 – Backend Setup
-```bash
-cd backend
-npm install
-```
-Create a `.env` file in the `backend/` folder:
-```
-MONGO_URI=mongodb://127.0.0.1:27017/smartHealthSOS
-JWT_SECRET=your_secure_secret_here
-PORT=5000
-```
-```bash
-node server.js
-```
-Backend runs on: `http://localhost:5000`
-
-### Step 3 – Frontend Setup
-```bash
-cd ../frontend
-npm install
-npm start
-```
-Frontend runs on: `http://localhost:3000`
-
-### Step 4 – Seed Test Data (Optional)
-```bash
-cd backend
-node seed.js
-```
-This creates sample users (patient, responder, admin) using data from `InputData/sample_data.json`.
-
----
-
-## 8. User Guide
-
-### Patient
-1. Register at `/register`, select role "Patient"
-2. Log in and complete your Health Profile (blood type, allergies, contacts)
-3. In an emergency, press the large red **SOS** button on your dashboard
-4. Confirm the GPS location prompt; your alert is sent instantly to all online Responders
-
-### Responder
-1. Log in with a Responder account (registered by Admin)
-2. Your dashboard shows all active SOS alerts in real time
-3. Click **Accept** to take ownership of an alert; view the patient's health profile
-4. Navigate to the patient using the Google Maps link
-5. Click **Resolve** when the emergency is handled
-
-### Admin
-1. Log in with the Admin account
-2. Use the **Users** tab to view, deactivate, change roles, or delete users
-3. Use the **Alerts** tab to monitor all SOS alerts with filters by status and date
-
----
-
-## 9. Individual Contribution Statements
-
-| Name       | Roll No. | Contributions                                          |
-|------------|----------|--------------------------------------------------------|
-| [Member 1] |          | [Backend auth, SOS controller, Socket.IO setup]        |
-| [Member 2] |          | [React frontend, all pages, Tailwind styling]          |
-| [Member 3] |          | [Database models, health profile API, admin routes]    |
-| [Member 4] |          | [Test plan, test execution, documentation, D1–D6 docs] |
-
----
-
-## 10. Lessons Learned and Limitations
-
-### Lessons Learned
-- Real-time features (Socket.IO) require careful event naming and room management to avoid broadcasting to wrong clients.
-- JWT middleware is best implemented as a reusable function rather than inline in each route.
-- Early database schema design saves significant refactoring time later.
-- Testing role-based access early exposes backend permission gaps that are hard to fix later.
-
-### Limitations
-- No SMS/email notification — emergency contacts are stored but not actively notified in this version.
-- No persistent map view — location is shared as a Google Maps link, not an embedded live map.
-- No mobile app — the web UI is responsive but not a dedicated native app.
-- Single-server deployment — no load balancing or cloud hosting in the prototype.
-
----
-
-## 11. References
-
-1. MongoDB Documentation – https://www.mongodb.com/docs/
-2. Express.js Documentation – https://expressjs.com/
-3. React.js Documentation – https://react.dev/
-4. Socket.IO Documentation – https://socket.io/docs/
-5. JSON Web Tokens – https://jwt.io/introduction
-6. Tailwind CSS Documentation – https://tailwindcss.com/docs
-7. Base project reference: MDRAJAKHAN/Smart-Emergency-SoS-System – https://github.com/MDRAJAKHAN/Smart-Emergency-SoS-System
+| Team Member | Roll Number | Key Contributions |
+|-------------|-------------|-------------------|
+| **Bhavita Bhanani** | TCT-24007 | Team Coordinator; designed system architecture, Express backend, Socket.IO real-time alert pipeline, and end-to-end integration. |
+| **Ayesha** | TCT-24009 | Developed React and Tailwind CSS frontend dashboards (`PatientDashboard`, `ResponderDashboard`, `AdminDashboard`) and responsive UI components. |
+| **Narjis Fatima** | TCT-24003 | Implemented MongoDB/Mongoose schemas (`User`, `HealthProfile`, `SOSAlert`), REST API endpoints, and database seeding scripts. |
+| **Hiba Shafique** | TCT-24013 | Authored SRS requirements, traceability matrix, 30-case test plan, execution report, defect log, and project documentation. |
