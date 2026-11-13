@@ -3,7 +3,7 @@
 **Project Title:** Smart Health & Emergency SOS Response Portal
 **Course:** Software Engineering – CT-365
 **Submission:** Deliverable 4
-**Date:** [Insert Date]
+**Date:** November 11, 2026
 **Version:** 1.0
 
 ---
