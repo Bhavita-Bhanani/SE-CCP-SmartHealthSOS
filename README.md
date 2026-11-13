@@ -8,17 +8,17 @@
 |--------------------|------------------------------------------------------|
 | **Project Title**  | Smart Health & Emergency SOS Response Portal         |
 | **Course**         | Software Engineering – CT-365                        |
-| **Submission Date**| [Insert Submission Date]                             |
-| **Git Repository** | [Insert Repository URL]                              |
+| **Submission Date**| November 13, 2026                         |
+| **Git Repository** | https://github.com/Bhavita-Bhanani/SE-CCP-SmartHealthSOS                           |
 
 ### Team Members
 
 | Name               | Roll Number     | Role                        |
 |--------------------|-----------------|-----------------------------|
-| [Bhavita]         | [TCT-24007]      | Team Coordinator / Backend  |
-| [Ayesha]         | [TCT-24009]      | Frontend Developer          |
-| [Narjis Fatima]         | [TCT-24003]      | Database / API Integration  |
-| [Hiba Shafique]         | [TCT-24013]      | Testing & Documentation     |
+| Bhavita         | TCT-24007      | Team Coordinator / Backend  |
+| Ayesha         | TCT-24009      | Frontend Developer          |
+| Narjis Fatima         | TCT-24003     | Database / API Integration  |
+| Hiba Shafique         | TCT-24013      | Testing & Documentation     |
 
 ---
 
