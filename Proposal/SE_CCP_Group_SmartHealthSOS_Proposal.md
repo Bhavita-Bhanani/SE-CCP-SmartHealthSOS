@@ -11,10 +11,10 @@
 
 | # | Full Name | Roll Number | Role |
 | :---: | :--- | :--- | :--- |
-| 1 | Bhavita Bhanani | `TCT-24007` | Group Lead & Full-Stack Developer |
-| 2 | Narjis Fatima | `TCT-24003` | Database Architect |
+| 1 | Narjis Fatima | `TCT-24003` | Database and API Engineer |
+| 2 | Bhavita Bhanani | `TCT-24007` | Team Coordinator and Full-Stack Developer |
 | 3 | Ayesha | `TCT-24009` | Frontend Developer |
-| 4 | Hiba Shafique | `TCT-24013` | Documentation Lead |
+| 4 | Hiba | `TCT-24013` | QA and Documentation Lead |
 
 ---
 
