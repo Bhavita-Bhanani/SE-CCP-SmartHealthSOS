@@ -10,10 +10,10 @@
 ### Team Members
 | Name | Roll Number | Role |
 |------|-------------|------|
-| 1 | Narjis Fatima | `TCT-24003` | Database and API Engineer |
-| 2 | Bhavita Bhanani | `TCT-24007` | Team Coordinator and Full-Stack Developer |
-| 3 | Ayesha | `TCT-24009` | Frontend Developer |
-| 4 | Hiba | `TCT-24013` | QA and Documentation Lead |
+| Narjis Fatima | `TCT-24003` | Database and API Engineer |
+| Bhavita Bhanani | `TCT-24007` | Team Coordinator and Full-Stack Developer |
+| Ayesha | `TCT-24009` | Frontend Developer |
+| Hiba | `TCT-24013` | QA and Documentation Lead |
 ---
 
 ## 1. Test Execution Summary
