@@ -8,7 +8,7 @@
 |--------------------|------------------------------------------------------|
 | **Project Title**  | Smart Health & Emergency SOS Response Portal         |
 | **Course**         | Software Engineering – CT-365                        |
-| **Submission Date**| November 13, 2026                         |
+| **Submission Date**| November 14, 2026                         |
 | **Git Repository** | https://github.com/Bhavita-Bhanani/SE-CCP-SmartHealthSOS                           |
 
 ### Team Members
